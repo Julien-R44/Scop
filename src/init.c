@@ -6,7 +6,7 @@
 /*   By: y0ja <y0ja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 02:13:31 by y0ja              #+#    #+#             */
-/*   Updated: 2015/10/25 02:14:06 by y0ja             ###   ########.fr       */
+/*   Updated: 2015/10/25 06:51:37 by y0ja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		init_opengl(t_all *all)
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-	all->win = SDL_CreateWindow("HumanGL", SDL_WINDOWPOS_CENTERED,
+	all->win = SDL_CreateWindow(TITLE_WIN, SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED, WWIN, HWIN, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 	if (!all->win)
 		ft_error(all->win);

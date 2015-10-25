@@ -6,7 +6,7 @@
 /*   By: y0ja <y0ja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 01:46:52 by y0ja              #+#    #+#             */
-/*   Updated: 2015/10/25 02:11:28 by y0ja             ###   ########.fr       */
+/*   Updated: 2015/10/25 06:16:11 by y0ja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,17 @@
 # include <math.h>
 
 # include "libft.h"
+# include "libmath.h"
 
-# define WWIN 600
-# define HWIN 400
-# define TRUE 1
-# define FALSE 0
-
-typedef struct	s_vec4
-{
-	float		x;
-	float		y;
-	float		z;
-	float		w;
-}				t_vec4;
-
-typedef struct	s_mat4
-{
-	t_vec4		x;
-	t_vec4		y;
-	t_vec4		z;
-	t_vec4		w;
-}				t_mat4;
+# define TITLE_WIN	"HumanGL"
+# define WWIN		600
+# define HWIN		400
+# define FOV		70.0
+# define RATIO		(WWIN / HWIN)
+# define NEAR		1.0
+# define FAR		100.0
+# define TRUE		1
+# define FALSE		0
 
 typedef struct		s_all
 {

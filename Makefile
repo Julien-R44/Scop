@@ -14,8 +14,8 @@ INCDIR	= ./inc/
 SRCS	= $(addprefix $(SRCDIR), $(SRC))
 OBJS	= $(addprefix $(OBJDIR), $(OBJ))
 INCS	= $(addprefix $(INCDIR), $(INC))
-LDFLAGS	= -I./inc/ -I./libft/include/ -I /usr/include/GL/
-LIBFLAG = -L./libft/ -lft -lSDL2 -lglut -lGLU -lGL -lXmu -lX11 -lm
+LDFLAGS	= -I./inc/ -I./libft/include/ -I./libmath/inc/ -I /usr/include/GL/
+LIBFLAG = -L./libft/ -lft -L./libmath/ -lmath -lSDL2 -lglut -lGLU -lGL -lXmu -lX11 -lm
 
 .SILENT:
 
@@ -23,6 +23,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(INCS)
 	make -C libft/
+	make -C libmath/
 	gcc $(FLAGS) -o $@ $^ $(LIBFLAG)
 	echo "\\033[1;32mSuccess.\\033[0;39m"
 
@@ -45,6 +46,7 @@ clean:
 
 fclean: clean
 	make fclean -C libft/
+	make fclean -C libmath/
 	echo "\\033[1;34mDeleting $(NAME)\\033[0;39m"
 	rm -f $(NAME)
 
