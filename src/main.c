@@ -6,7 +6,7 @@
 /*   By: y0ja <y0ja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/04 22:59:22 by y0ja              #+#    #+#             */
-/*   Updated: 2015/10/25 02:10:38 by y0ja             ###   ########.fr       */
+/*   Updated: 2015/10/25 02:19:04 by y0ja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,8 @@ void	draw(GLfloat g_vertex_buffer_data[], GLuint vertexbuffer)
 {
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glVertexAttribPointer(
-	   0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-	   3,                  // size
-	   GL_FLOAT,           // type
-	   GL_FALSE,           // normalized?
-	   0,                  // stride
-	   (void*)0            // array buffer offset
-	);
-
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-
 	glDisableVertexAttribArray(0);
 }
 
@@ -58,23 +49,18 @@ void	hook(t_all *all)
     printf("Renderer: %s\n", (const char *)glGetString(GL_RENDERER));
     printf("GLSL Version: %s\n", (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-	// An array of 3 vectors which represents 3 vertices
 	static GLfloat g_vertex_buffer_data[] = {
 	   -0.5f, -0.5f, 0.0f,
 	   0.5f, -0.5f, 0.0f,
 	   0.0f,  0.5f, 0.0f,
 	};
 
-	// This will identify our vertex buffer
 	GLuint vertexbuffer;
 
-	// Generate 1 buffer, put the resulting identifier in vertexbuffer
 	glGenBuffers(1, &vertexbuffer);
 
-	// The following commands will talk about our 'vertexbuffer' buffer
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 
-	// Give our vertices to OpenGL.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
 	glUseProgram(all->shader);
