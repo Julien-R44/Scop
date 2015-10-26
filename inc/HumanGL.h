@@ -6,7 +6,7 @@
 /*   By: y0ja <y0ja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 01:46:52 by y0ja              #+#    #+#             */
-/*   Updated: 2015/10/25 06:16:11 by y0ja             ###   ########.fr       */
+/*   Updated: 2015/10/26 01:52:00 by y0ja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ typedef struct		s_all
 	t_mat4			projection;
 	t_mat4			modelview;
 }					t_all;
+
+GLuint	init_shaders(char *f_vertex, char *f_fragment);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: y0ja <y0ja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/26 02:13:31 by y0ja              #+#    #+#             */
-/*   Updated: 2015/10/25 06:51:37 by y0ja             ###   ########.fr       */
+/*   Updated: 2015/10/26 02:39:17 by y0ja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ static void		init_opengl(t_all *all)
 	all->glContext = SDL_GL_CreateContext(all->win);
 	if (all->glContext == 0)
 		ft_error(all->win);
-
-	// TO MOVE BRUH
-	GLuint VertexArrayID;
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
 }
 
 static char		*load_file(char *filename)
@@ -46,17 +41,18 @@ static char		*load_file(char *filename)
 	return (data);
 }
 
-static GLuint	init_shaders(char *f_vertex, char *f_fragment)
+GLuint	init_shaders(char *f_vertex, char *f_fragment)
 {
-	// Create shaders
+// Create the shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
 
-	// Read Vertex Shader
+	// Read the Vertex Shader code from the file
 	char *VertexShaderCode;
 	VertexShaderCode = load_file(f_vertex);
+	printf("vertex shader: -------------\n%s\n------------------------\n", VertexShaderCode);
 
-	// Read Fragment Shader
+	// Read the Fragment Shader code from the file
 	char *FragmentShaderCode;
 	FragmentShaderCode = load_file(f_fragment);
 	printf("segment shader: ------------\n%s\n------------------------\n", FragmentShaderCode);
@@ -121,7 +117,17 @@ static GLuint	init_shaders(char *f_vertex, char *f_fragment)
 
 	glDeleteShader(VertexShaderID);
 	glDeleteShader(FragmentShaderID);
+
 	return (ProgramID);
+}
+
+void	version_info_print(void)
+{
+    printf("Version: %s\n", (const char *)glGetString(GL_VERSION));
+    printf("Vendor: %s\n", (const char *)glGetString(GL_VENDOR));
+    printf("Renderer: %s\n", (const char *)glGetString(GL_RENDERER));
+    printf("GLSL Version: %s\n", (const char *)glGetString(GL_SHADING_LANGUAGE_VERSION));
+
 }
 
 void	init_all(t_all *all)
@@ -129,6 +135,5 @@ void	init_all(t_all *all)
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		ft_error(all->win);
 	init_opengl(all);
-	all->shader = init_shaders("res/shader/VertexShader.vs", "res/shader/FragmentShader.fs");
-	glClearColor(0.0, 0.5, 1.0, 1.0);
+	version_info_print();
 }

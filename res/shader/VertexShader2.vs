@@ -1,15 +1,11 @@
 #version 150 core
 
-in vec3 in_Vertex;
-in vec3 in_Color;
+in vec3 vertexPosition_modelspace;
+uniform mat4 MVP;
 
-uniform mat4 projection;
-uniform mat4 modelview;
+void main(){
 
-out vec3 color;
-
-void main()
-{
-	gl_Position = projection * modelview * vec4(in_Vertex, 1.0);
-	color = in_Color;
+    // Obtient la position du sommet, dans l'espace de découpe : MVP * position
+    vec4 v = vec4(vertexPosition_modelspace,1); // Transforme un vecteur 4D homogène, vous vous souvenez ?
+    gl_Position = MVP * v;
 }
