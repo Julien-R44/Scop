@@ -6,7 +6,7 @@
 /*   By: y0ja <y0ja@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/04 22:59:22 by y0ja              #+#    #+#             */
-/*   Updated: 2015/10/26 02:42:01 by y0ja             ###   ########.fr       */
+/*   Updated: 2015/10/26 02:59:49 by y0ja             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ static const GLfloat g_color_buffer_data[] = {
     0.0255f,  0.12555f,  0.185f,
     0.0255f,  0.12555f,  0.761f,
     0.0255f,  0.12555f,  0.730f,
-    0.0255f,  0.12555f,  0.152f,
-    0.0255f,  0.12555f,  0.789f,
-    0.0255f,  0.12555f,  0.639f,
-    0.0255f,  0.12555f,  0.859f,
-    0.0255f,  0.12555f,  0.576f,
-    0.0255f,  0.12555f,  0.970f,
-    0.0255f,  0.12555f,  0.116f,
-    0.0255f,  0.12555f,  0.133f,
+    0.0255f,  0.4555f,  0.152f,
+    0.0255f,  0.4555f,  0.789f,
+    0.0255f,  0.4555f,  0.639f,
+    0.0255f,  0.4555f,  0.859f,
+    0.0255f,  0.4555f,  0.576f,
+    0.0255f,  0.4555f,  0.970f,
+    0.0255f,  0.4555f,  0.116f,
+    0.0255f,  0.4555f,  0.133f,
     0.0255f,  0.12555f,  0.833f,
     0.0255f,  0.12555f,  0.489f,
     0.0255f,  0.12555f,  0.064f,
@@ -80,14 +80,14 @@ static const GLfloat g_color_buffer_data[] = {
     0.0255f,  0.12555f,  0.345f,
     0.0255f,  0.12555f,  0.734f,
     0.0255f,  0.12555f,  0.174f,
-    0.0255f,  0.12555f,  0.848f,
-    0.0255f,  0.12555f,  0.040f,
-    0.0255f,  0.12555f,  0.338f,
-    0.0255f,  0.12555f,  0.120f,
+    0.0255f,  0.19555f,  0.848f,
+    0.0255f,  0.19555f,  0.040f,
+    0.0255f,  0.19555f,  0.338f,
+    0.0255f,  0.19555f,  0.120f,
     0.0255f,  0.12555f,  0.362f,
     0.0255f,  0.12555f,  0.457f,
     0.0255f,  0.12555f,  0.371f,
-    0.0255f,  0.12555f,  0.879f
+    0.0255f,  0.19555f,  0.879f
 };
 
 void	ft_error(SDL_Window *win)
@@ -152,7 +152,6 @@ t_mat4			ft_mat4lookAt2(t_vec3 pos, t_vec3 target, t_vec3 up)
 
 	return (ret);
 }
-
 
 void	hook(t_all *all)
 {
@@ -222,12 +221,15 @@ void	hook(t_all *all)
 			glEnableVertexAttribArray(0);
 			glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 			glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,0,NULL);
+
 			glEnableVertexAttribArray(1);
 			glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-			glVertexAttribPointer(1, 1, 3,GL_FLOAT,GL_FALSE,0,NULL);
+			glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE, 0,NULL);
+
 			glDrawArrays(GL_TRIANGLES, 0, 12 * 3);
 			glDisableVertexAttribArray(0);
 		glUseProgram(0);
+
 		SDL_GL_SwapWindow(all->win);
 
 		while((err = glGetError()) != GL_NO_ERROR) { printf("ERROR %d\n", err); }
